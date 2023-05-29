@@ -1,0 +1,10 @@
+C:\Users\OS\source\repos\Demo_DataGridView_LINQ\Demo_DataGridView_LINQ\bin\Debug\Demo_DataGridView_LINQ.exe.config
+C:\Users\OS\source\repos\Demo_DataGridView_LINQ\Demo_DataGridView_LINQ\bin\Debug\Demo_DataGridView_LINQ.exe
+C:\Users\OS\source\repos\Demo_DataGridView_LINQ\Demo_DataGridView_LINQ\bin\Debug\Demo_DataGridView_LINQ.pdb
+C:\Users\OS\source\repos\Demo_DataGridView_LINQ\Demo_DataGridView_LINQ\obj\Debug\Demo_DataGridView_LINQ.csproj.AssemblyReference.cache
+C:\Users\OS\source\repos\Demo_DataGridView_LINQ\Demo_DataGridView_LINQ\obj\Debug\Demo_DataGridView_LINQ.Form1.resources
+C:\Users\OS\source\repos\Demo_DataGridView_LINQ\Demo_DataGridView_LINQ\obj\Debug\Demo_DataGridView_LINQ.Properties.Resources.resources
+C:\Users\OS\source\repos\Demo_DataGridView_LINQ\Demo_DataGridView_LINQ\obj\Debug\Demo_DataGridView_LINQ.csproj.GenerateResource.cache
+C:\Users\OS\source\repos\Demo_DataGridView_LINQ\Demo_DataGridView_LINQ\obj\Debug\Demo_DataGridView_LINQ.csproj.CoreCompileInputs.cache
+C:\Users\OS\source\repos\Demo_DataGridView_LINQ\Demo_DataGridView_LINQ\obj\Debug\Demo_DataGridView_LINQ.exe
+C:\Users\OS\source\repos\Demo_DataGridView_LINQ\Demo_DataGridView_LINQ\obj\Debug\Demo_DataGridView_LINQ.pdb

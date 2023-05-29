@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AccessingDataApp_DB" Class="MyDataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDb)\MSSQLLocalDB;Initial Catalog=AccessingDataApp_DB;Integrated Security=True" SettingsObjectName="Demo_DataGridView_LINQ.Properties.Settings" SettingsPropertyName="AccessingDataApp_DBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.EmployeeProfile" Member="EmployeeProfiles">
+    <Type Name="EmployeeProfile">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="EmployeeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Info" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Employee_EmployeeProfile" Member="Employee" ThisKey="EmployeeId" OtherKey="Id" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Employee" Member="Employees">
+    <Type Name="Employee">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="DateOfBirth" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Sex" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Employee_EmployeeProfile" Member="EmployeeProfiles" ThisKey="Id" OtherKey="EmployeeId" Type="EmployeeProfile" />
+    </Type>
+  </Table>
+</Database>
