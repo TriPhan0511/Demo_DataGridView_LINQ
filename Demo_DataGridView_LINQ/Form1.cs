@@ -15,7 +15,27 @@ namespace Demo_DataGridView_LINQ
         public Form1()
         {
             InitializeComponent();
+            //LoadDataSourceForDataGridView();
+        }
 
+        private void LoadDataSourceForDataGridView()
+        {
+            using (MyDataClassesDataContext db = new MyDataClassesDataContext())
+            {
+                //dataGridView1.DataSource = from emp in db.Employees
+                //                           from profile in db.EmployeeProfiles
+                //                           where emp.Id == profile.EmployeeId
+                //                           select new
+                //                           {
+                //                               Employee_Name = emp.Name,
+                //                               Date_Of_Birth = emp.DateOfBirth,
+                //                               Sex = (bool)emp.Sex ? "Male" : "Female",
+                //                               Informarion = profile.Info
+                //                           };
+
+                dataGridView1.DataSource = from emp in db.Employees
+                                           select emp;
+            }
         }
 
         private void btnView_Click(object sender, EventArgs e)
@@ -36,13 +56,39 @@ namespace Demo_DataGridView_LINQ
         {
             using (MyDataClassesDataContext db = new MyDataClassesDataContext())
             {
+                int id = (int)dataGridView1.SelectedCells[0].OwningRow.Cells["Id"].Value;
+                Employee deletedEmp = db.Employees.Where(p => p.Id == id).SingleOrDefault();
+                db.Employees.DeleteOnSubmit(deletedEmp);
+                db.SubmitChanges();
+                //MessageBox.Show("An employee was deleted from database.");
 
+                // Re-load database
+                btnView_Click(sender, e);
             }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string id = txtKey.Text;
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                MessageBox.Show("Please enter an id into text box");
+                return;
+            }
+            else
+            {
+                using (MyDataClassesDataContext db = new MyDataClassesDataContext())
+                {
+                    int searchedId = Convert.ToInt32(id);
+                    dataGridView1.DataSource = db.Employees.Where(p => p.Id == searchedId);
+                }
+                
+            }
         }
 
         // TESTING
