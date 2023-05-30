@@ -60,16 +60,29 @@ namespace Demo_DataGridView_LINQ
                 Employee deletedEmp = db.Employees.Where(p => p.Id == id).SingleOrDefault();
                 db.Employees.DeleteOnSubmit(deletedEmp);
                 db.SubmitChanges();
-                //MessageBox.Show("An employee was deleted from database.");
-
-                // Re-load database
-                btnView_Click(sender, e);
+                btnView_Click(sender, e); // Re-load database
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private void btnUpdate_Click(object sender, EventArgs e)
         {
+            using (MyDataClassesDataContext db = new MyDataClassesDataContext())
+            {
+                int id = (int)dataGridView1.SelectedCells[0].OwningRow.Cells["Id"].Value;
+                string name = dataGridView1.SelectedCells[0].OwningRow.Cells["Name"].Value.ToString();
+                DateTime dateOfBirth = (DateTime)dataGridView1.SelectedCells[0].OwningRow.Cells["DateOfBirth"].Value;
+                bool sex = (bool)dataGridView1.SelectedCells[0].OwningRow.Cells["Sex"].Value;
 
+                Employee editedEmp = db.Employees.Where(p => p.Id == id).SingleOrDefault();
+                editedEmp.Name = name;
+                editedEmp.DateOfBirth = dateOfBirth;
+                editedEmp.Sex = sex;
+
+                db.SubmitChanges();
+                btnView_Click(sender, e); // Re-load database
+
+                MessageBox.Show("An employee was updated!");
+            }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
