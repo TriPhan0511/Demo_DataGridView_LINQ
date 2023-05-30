@@ -49,7 +49,26 @@ namespace Demo_DataGridView_LINQ
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            using (MyDataClassesDataContext db = new MyDataClassesDataContext())
+            {
+                int id = (int)dataGridView1.SelectedCells[0].OwningRow.Cells["Id"].Value;
+                string name = dataGridView1.SelectedCells[0].OwningRow.Cells["Name"].Value.ToString();
+                DateTime? dateOfBirth =
+                        (DateTime?)dataGridView1.SelectedCells[0].OwningRow.Cells["DateOfBirth"].Value;
+                bool? sex = (bool?)dataGridView1.SelectedCells[0].OwningRow.Cells["Sex"].Value;
 
+                Employee newEmp = new Employee();
+                newEmp.Id = id;
+                newEmp.Name = name;
+                newEmp.DateOfBirth = dateOfBirth;
+                newEmp.Sex = sex;
+
+                db.Employees.InsertOnSubmit(newEmp);
+                db.SubmitChanges();
+                btnView_Click(sender, e); // Re-load database
+
+                MessageBox.Show("An employee was added!");
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -70,8 +89,13 @@ namespace Demo_DataGridView_LINQ
             {
                 int id = (int)dataGridView1.SelectedCells[0].OwningRow.Cells["Id"].Value;
                 string name = dataGridView1.SelectedCells[0].OwningRow.Cells["Name"].Value.ToString();
-                DateTime dateOfBirth = (DateTime)dataGridView1.SelectedCells[0].OwningRow.Cells["DateOfBirth"].Value;
-                bool sex = (bool)dataGridView1.SelectedCells[0].OwningRow.Cells["Sex"].Value;
+                //DateTime? dateOfBirth =
+                //    dataGridView1.SelectedCells[0].OwningRow.Cells["DateOfBirth"].Value == null
+                //        ? null
+                //        : (DateTime?)dataGridView1.SelectedCells[0].OwningRow.Cells["DateOfBirth"].Value;
+                DateTime? dateOfBirth =
+                        (DateTime?)dataGridView1.SelectedCells[0].OwningRow.Cells["DateOfBirth"].Value;
+                bool? sex = (bool?)dataGridView1.SelectedCells[0].OwningRow.Cells["Sex"].Value;
 
                 Employee editedEmp = db.Employees.Where(p => p.Id == id).SingleOrDefault();
                 editedEmp.Name = name;
